@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  div.container
+    h1= title
+    p Welcome to #{title}
+
+
+    table#chat(class="table table-striped")
+      thead
+        th Name
+        th Email
+        th homepage
+        th Message
+      tbody
+        -if(messages.length > 0)
+          -each message in messages
+            tr
+              td= message.name
+              td= message.email
+              td= message.homepage
+              td= message.text
+
+    form.form-horizontal(action='', method='post')
+      div.form-group
+        label(for="enter-name" class="col-sm-12") Enter your name
+          div.col-sm-12
+            input#enter-name(class="form-controll")
+        label(for="enter-email" class="col-sm-12") Enter your email
+          div.col-sm-12
+            input#enter-email(class="form-controll")
+
+        label(for="enter-homepage" class="col-sm-12") Enter your homepage
+          div.col-sm-12
+            input#enter-homepage(class="form-controll")
+        label(for="enter-message" class="col-sm-12") Enter your message
+        div.col-sm-12
+          textarea#enter-message(class="form-controll")
+      button(class="btn btn-default") Send
+
+
