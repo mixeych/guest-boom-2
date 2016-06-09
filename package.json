@@ -14,6 +14,7 @@
     "cps": "*",
     "debug": "~2.2.0",
     "express": "~4.13.1",
+    "express-paginate": "^0.2.0",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "mysql": "*",
@@ -21,6 +22,7 @@
     "serve-favicon": "~2.3.0",
     "socket.io": "*",
     "string": "^3.3.1",
-    "underscore": "*"
+    "underscore": "*",
+    "express-paginate": "~0.2.0"
   }
 }
