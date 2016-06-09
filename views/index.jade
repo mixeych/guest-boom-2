@@ -2,16 +2,20 @@ extends layout
 
 block content
   div.container
-    h1= title
+    a(href='/')
+      h1= title
     p Welcome to #{title}
-
 
     table#chat(class="table table-striped")
       thead
-        th Name
-        th Email
+        th
+          a(href='?sort=name&order='+pagin.order) Name
+        th
+          a(href='?sort=email&order='+pagin.order) Email
         th homepage
         th Message
+        th
+          a(href='?sort=created_at&order='+pagin.order) Date
       tbody
         -if(messages.length > 0)
           -each message in messages
@@ -20,7 +24,16 @@ block content
               td= message.email
               td= message.homepage
               td= message.text
-
+    nav
+      ul.pagination
+        -if(pagin.prevPage)
+          li
+            a(href=''+pagin.prevPage aria-label="Previous")
+              span(aria-hidden="true") &laquo;
+        -if(pagin.nextPage)
+          li
+            a(href=''+pagin.nextPage aria-label="Next")
+              span(aria-hidden="true") &raquo;
     form.form-horizontal(action='', method='post')
       div.form-group
         label(for="enter-name" class="col-sm-12") Enter your name

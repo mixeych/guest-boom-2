@@ -8,7 +8,6 @@ module.exports = function(server){
             var email = S(message.email).stripTags().s;
             var homepage = S(message.homepage).stripTags().s;
             var text = S(message.text).stripTags().s;
-            console.log(text);
             connection.query('INSERT INTO message (name, email, homepage, text) VALUES (?, ?, ?, ?)', [name, email, homepage, text], function(err, result){
                 if(err){
                     throw err;
@@ -18,7 +17,7 @@ module.exports = function(server){
                 name: name,
                 email: email,
                 homepage: homepage,
-                text: text
+                text: text,
             }
             socket.broadcast.emit("chat", message);
             cb(message);

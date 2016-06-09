@@ -23,6 +23,6 @@
     "socket.io": "*",
     "string": "^3.3.1",
     "underscore": "*",
-    "express-paginate": "~0.2.0"
+    "async": "*"
   }
 }

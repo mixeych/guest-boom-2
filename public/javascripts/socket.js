@@ -2,6 +2,14 @@ var socket = io.connect('http://localhost:3000');
 
 socket.on("chat", function (data){
     var row = "<tr><td>"+data.name+"</td><td>"+data.email+"</td><td>"+data.homepage+"</td><td>"+data.text+"</td></tr>";
+    if($("#chat tbody tr").length>=5){
+        var pagination = '<nav><ul class="pagination"><li><a href="?page=1" aria-label="Next"><span aria-hidden="true">&raquo</span></a></li></ul></nav>';
+        $("#chat tbody tr:last-child").remove();
+        if(!$(".pagination .pagin.nextPage").length){
+            $(pagination).insertAfter("#chat");
+        }
+    }
+
     $("#chat tbody").prepend(row);
 });
 $(document).ready(function(){
@@ -44,6 +52,13 @@ $(document).ready(function(){
         }
         socket.emit("message", message, function(data){
             var row = "<tr><td>"+data.name+"</td><td>"+data.email+"</td><td>"+data.homepage+"</td><td>"+data.text+"</td></tr>";
+            var pagination = '<nav><ul class="pagination"><li><a href="?page=1" aria-label="Next"><span aria-hidden="true">&raquo</span></a></li></ul></nav>';
+            if($("#chat tbody tr").length>=5){
+                $("#chat tbody tr:last-child").remove();
+                if(!$(".pagination .pagin.nextPage").length){
+                    $(pagination).insertAfter("#chat");
+                }
+            }
             $("#chat tbody").prepend(row);
         });
 
